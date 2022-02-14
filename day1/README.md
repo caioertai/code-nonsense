@@ -3,6 +3,7 @@
 # app/models/wish.rb
 class Wish
   def wish?
+    # this randomization is a stand-in for the unpredictable internal logic
     rand(0..1).zero?
   end
 end
