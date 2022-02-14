@@ -1,4 +1,20 @@
 # Day 1: Wish I Wasn't Here
+```ruby
+class Wish
+  def wish?
+    rand(0..1).zero?
+  end
+end
+
+wish = Wish.new
+
+if wish.wish?
+  puts "do_wish_stuff"
+else
+  puts "do_non_wish_stuff"
+end
+```
+
 That's an actual code I've seen in a Rails controller while working. My time at the company was miserable since I couldn't justify refactoring it into something that didn't feel like an ontological challenge to the universe.
 
 ## What makes it *nonsense*?
@@ -19,4 +35,4 @@ That created an issue for the model `Wish`. In that sense, the `Wish` class went
 
 If the factory logic was an operational `must-have`, then it should have been abstracted into another class that returns a `Wish` or an `Order` instance according to some given parameters.
 
-Another, and probably better option, would have been rethinking the idea that *a wish can **become** an order* into something else: *a wish can **generate** an order*. This way we could use the `Wish` instances freely as snapshots and work the application code in such way that a wish becomes `#inactive?` when an `Order` is generated from it, and we could associate that wish  (has one or belongs to) to that order.
+Another, and probably better option, would have been rethinking the idea that *a wish can **become** an order* into something else: *a wish can **generate** an order*. This way we could use the `Wish` instances freely as snapshots and work the application code in such way that a wish becomes `#inactive?` when an `Order` is generated from it, and we could associate that wish  (`::has_one` or `::belongs_to`) to that order.
