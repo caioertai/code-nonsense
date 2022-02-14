@@ -1,13 +1,14 @@
 # Day 1: Wish I Wasn't Here
 ```ruby
+# app/models/wish.rb
 class Wish
   def wish?
     rand(0..1).zero?
   end
 end
 
+# Then: in some controller action
 wish = Wish.new
-
 if wish.wish?
   puts "do_wish_stuff"
 else
@@ -26,12 +27,12 @@ Well, maybe a **wish** existed at some point and it doesn't anymore. Maybe it be
 
 So, we can still use the `Wish` model. And we can represent its transition via methods that express its *current* state, maybe as `#inactive?` maybe as `fulfilled?`, but, nonetheless, a wish.
 
-## Why the *nonsense* happened?
+## Why did the *nonsense* happen?
 Users could create a wishlist. Wishes could then be turned into orders. Wishes that became orders were reasoned in the code as not being wishes anymore, having become something else instead.
 
 That created an issue for the model `Wish`. In that sense, the `Wish` class went from being a model representation of an object, into essentially working as both a model for wishes and a factory for things that may or may not be an actual wish.
 
-## What would have prevented the *nonsense*?
+## How could we prevent the *nonsense*?
 
 If the factory logic was an operational `must-have`, then it should have been abstracted into another class that returns a `Wish` or an `Order` instance according to some given parameters.
 
